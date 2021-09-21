@@ -5,6 +5,7 @@ const config: PlaywrightTestConfig = {
     outputDir: 'results',
     forbidOnly: !!process.env.CI,
     reporter: 'list',
+    retries: 1,
     webServer: process.env.APP_URL
         ? undefined
         : {
