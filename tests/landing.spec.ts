@@ -11,6 +11,12 @@ test.describe('Given user arrives to a landing page,', () => {
         logo = page.locator('.logo');
     })
 
+    test('when page is visible, then it should match the screenshot visually', async ({ page }) => {
+        const screenshot = await page.screenshot({ fullPage: true, type: 'png' });
+
+        expect(screenshot).toMatchSnapshot('landing.png');
+    })
+
     test('when header becomes visible, then it should contain legible text', async () => {
         await expect(title).toContainText('Hello Vite + React');
     })
