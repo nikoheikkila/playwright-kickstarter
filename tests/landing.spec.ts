@@ -12,6 +12,8 @@ test.describe('Given user arrives to a landing page,', () => {
     })
 
     test('when page is visible, then it should match the screenshot visually', async ({ page }) => {
+        test.skip(!!process.env.CI);
+
         const screenshot = await page.screenshot({ fullPage: true, type: 'png' });
 
         expect(screenshot).toMatchSnapshot('landing.png');
