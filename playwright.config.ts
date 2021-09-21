@@ -4,6 +4,7 @@ const config: PlaywrightTestConfig = {
     testDir: 'tests',
     outputDir: 'results',
     forbidOnly: !!process.env.CI,
+    reporter: 'list',
     webServer: {
         command: 'yarn serve',
         port: 3000,
