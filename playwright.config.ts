@@ -5,25 +5,27 @@ const config: PlaywrightTestConfig = {
     outputDir: 'results',
     forbidOnly: !!process.env.CI,
     reporter: 'list',
-    webServer: {
-        command: 'yarn serve',
-        port: 3000,
-        reuseExistingServer: true,
-    },
+    webServer: process.env.APP_URL
+        ? undefined
+        : {
+            command: 'yarn serve',
+            port: 3000,
+            reuseExistingServer: true,
+        },
     use: {
-        baseURL: 'http://localhost:3000',
+        baseURL: process.env.APP_URL ?? 'http://localhost:3000',
         screenshot: process.env.CI ? 'only-on-failure' : 'off',
         video: process.env.CI ? 'retain-on-failure' : 'off',
         trace: process.env.CI ? 'retain-on-failure' : 'off',
     },
     projects: [
         {
-            ...devices['Desktop Firefox'],
+            ...devices[ 'Desktop Firefox' ],
             name: 'Firefox',
             use: { browserName: 'firefox' }
         },
         {
-            ...devices['iPhone 12'],
+            ...devices[ 'iPhone 12' ],
             name: 'iPhone',
             use: { browserName: 'webkit' }
         }
