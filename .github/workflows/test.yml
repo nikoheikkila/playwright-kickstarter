@@ -1,0 +1,32 @@
+name: Build and Test Site
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Clone the repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --prefer-offline
+
+      - name: Build application
+        run: yarn build
+
+      - name: Run tests
+        run: yarn test:e2e
+
+      - name: Store screenshots and videos for failed tests
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: results
+          path: results/*
