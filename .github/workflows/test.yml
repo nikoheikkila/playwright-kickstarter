@@ -18,10 +18,13 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile --prefer-offline
 
+      - name: Run unit tests
+        run: yarn test:unit
+
       - name: Build application
         run: yarn build
 
-      - name: Run tests
+      - name: Run E2E tests
         run: yarn test:e2e
 
       - name: Store screenshots and videos for failed tests

@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview --port 3000",
-    "test": "playwright test"
+    "test:unit": "echo 'Write unit tests!'",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "react": "^17.0.0",
