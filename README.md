@@ -3,6 +3,7 @@
 ![Logo](logo.png)
 
 [![Build and Test Site](https://github.com/nikoheikkila/playwright-kickstarter/actions/workflows/test.yml/badge.svg?branch=main&event=push)](https://github.com/nikoheikkila/playwright-kickstarter/actions/workflows/test.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f876834f-e00a-476b-b84b-4eec2d530985/deploy-status)](https://app.netlify.com/sites/playwright-kickstarter/deploys)
 
 This repository teaches how to use [**Playwright**][pw] and its test runner (`@playwright/test`) in a fresh React + Vite front-end application.
 
