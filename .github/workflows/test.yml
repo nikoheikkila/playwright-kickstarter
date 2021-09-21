@@ -16,7 +16,9 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+        run: |
+          yarn --frozen-lockfile --prefer-offline
+          npx playwright install-deps
 
       - name: Run unit tests
         run: yarn test:unit
