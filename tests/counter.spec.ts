@@ -1,25 +1,12 @@
 import test, { expect, Locator } from "@playwright/test";
 
-test.describe('Given a user is on a landing page,', () => {
+test.describe('Given there is a counter on landing page,', () => {
     let counter: Locator;
-    let title: Locator;
-    let logo: Locator;
 
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
 
         counter = page.locator('.counter');
-        title = page.locator('.title');
-        logo = page.locator('.logo');
-    })
-
-    test('when header is visible, then it should contain legible text', async () => {
-        await expect(title).toContainText('Hello Vite + React');
-    })
-
-
-    test('when logo is visible, then it should contain alternative text for accessibility reasons', async () => {
-        await expect(logo).toHaveAttribute('alt', 'logo');
     })
 
     test('when counter is visible, then it should display zero clicks', async () => {
@@ -45,5 +32,4 @@ test.describe('Given a user is on a landing page,', () => {
         await page.reload();
         await expect(counter).toContainText('count is: 0');
     })
-
 })
