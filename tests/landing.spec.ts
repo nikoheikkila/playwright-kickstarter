@@ -12,9 +12,11 @@ test.describe.parallel('Given user arrives to a landing page,', () => {
     })
 
     test('when page is visible, then it should match the screenshot visually', async ({ page }) => {
+        // Skipped in CI so we don't need to store Linux screenshots in this repository
         test.skip(!!process.env.CI);
 
-        const screenshot = await page.screenshot({ fullPage: true, type: 'png' });
+        await page.waitForSelector('.app');
+        const screenshot = await page.screenshot({ type: 'png' });
 
         expect(screenshot).toMatchSnapshot('landing.png');
     })
