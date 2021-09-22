@@ -1,6 +1,6 @@
 import test, { expect, Locator } from "@playwright/test";
 
-test.describe('Given there is a counter on landing page,', () => {
+test.describe.parallel('Given there is a counter on landing page,', () => {
     let counter: Locator;
 
     const expectCounterValueToBe = async (expected: number) => {

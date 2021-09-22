@@ -1,6 +1,6 @@
 import test, { expect, Locator } from "@playwright/test";
 
-test.describe('Given user arrives to a landing page,', () => {
+test.describe.parallel('Given user arrives to a landing page,', () => {
     let title: Locator;
     let logo: Locator;
 
