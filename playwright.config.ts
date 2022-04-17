@@ -12,14 +12,14 @@ enum Reporter {
  * By default, we want to have a standard list reporting and a pretty HTML output.
  * In CI pipelines, we want to have an annotated report visible on the GitHub Actions page.
  */
-const addReporter = () => {
+const addReporter = (): ReporterDescription[] => {
     const defaultReporter: ReporterDescription[] = [
         [Reporter.List],
         [Reporter.HTML],
     ];
 
     if (isPipeline) {
-        return defaultReporter.concat([Reporter.CI]);
+        return defaultReporter.concat([[Reporter.CI]]);
     }
 
     return defaultReporter;
