@@ -2,12 +2,13 @@
   "name": "playwright-kickstarter",
   "license": "MIT",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview --port 3000",
-    "test:unit": "echo 'Write unit tests!'",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:debug": "playwright test --debug"
   },
   "dependencies": {
     "react": "^17.0.0",
