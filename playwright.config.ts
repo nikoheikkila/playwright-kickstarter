@@ -1,5 +1,29 @@
 import os from 'node:os';
-import { PlaywrightTestConfig, devices } from '@playwright/test'
+import { PlaywrightTestConfig, devices, ReporterDescription } from '@playwright/test'
+
+enum Reporter {
+    HTML = 'html',
+    List = 'list',
+    CI = 'github'
+}
+
+/**
+ * Customize reporters.
+ * By default, we want to have a standard list reporting and a pretty HTML output.
+ * In CI pipelines, we want to have an annotated report visible on the GitHub Actions page.
+ */
+const addReporter = () => {
+    const defaultReporter: ReporterDescription[] = [
+        [Reporter.List],
+        [Reporter.HTML],
+    ];
+
+    if (isPipeline) {
+        return defaultReporter.concat([Reporter.CI]);
+    }
+
+    return defaultReporter;
+}
 
 // Default development URL - change if necessary
 const DEV_URL = 'http://localhost:3000';
@@ -34,7 +58,7 @@ const config: PlaywrightTestConfig = {
     testDir: 'tests',
     fullyParallel: true,
     forbidOnly: isPipeline,
-    reporter: isPipeline ? [['github']] : [['list'], ['html']],
+    reporter: addReporter(),
     retries: 1,
     timeout,
     workers,
