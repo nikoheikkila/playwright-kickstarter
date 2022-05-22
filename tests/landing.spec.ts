@@ -1,4 +1,4 @@
-import test, { expect, Locator } from "@playwright/test";
+import test, { expect, Locator } from "./fixtures";
 
 test.describe.parallel('Given user arrives to a landing page,', () => {
     let title: Locator;
@@ -11,9 +11,8 @@ test.describe.parallel('Given user arrives to a landing page,', () => {
         logo = page.locator('.logo');
     })
 
-    test('when page is visible, then it should match the screenshot visually', async ({ page }) => {
-        // Skipped in CI so we don't need to store Linux screenshots in this repository
-        test.skip(!!process.env.CI);
+    test('when page is visible, then it should match the screenshot visually', async ({ page, isPipeline }) => {
+        test.skip(isPipeline(), "Skipped in CI to avoid storing Linux screenshots in this repository.")
 
         await page.waitForSelector('.app');
         const screenshot = await page.screenshot({ type: 'png' });
