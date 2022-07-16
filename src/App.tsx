@@ -2,6 +2,14 @@ import React, { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
+interface WithChildren {
+  children: React.ReactNode;
+}
+
+interface CounterProps extends WithChildren {
+  onClick: () => void;
+}
+
 type Handler = () => void;
 
 const App: React.FC = () => {
@@ -19,7 +27,7 @@ const App: React.FC = () => {
   )
 }
 
-const Counter: React.FC<{ onClick: Handler }> = ({ onClick, children }) => (
+const Counter: React.FC<CounterProps> = ({ onClick, children }) => (
   <p>
     <button type="button" className="counter" onClick={onClick}>
       {children}
@@ -27,7 +35,7 @@ const Counter: React.FC<{ onClick: Handler }> = ({ onClick, children }) => (
   </p>
 )
 
-const Header: React.FC = ({ children }) => (
+const Header: React.FC<WithChildren> = ({ children }) => (
   <header className="header">
     <img src={logo} className="logo" alt="logo" />
     <h1 className="title">Hello Vite + React!</h1>
