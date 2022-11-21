@@ -45,6 +45,7 @@ Playwright configuration lives [here](./playwright.config.ts). Feel free to tink
 ## GitHub Actions
 
 Each push runs a full test-suite across multiple browsers and operating systems. Traces from failed tests and the overall test report are uploaded as artifacts and stored for seven days.
-
+Whoot
 [pw]: https://playwright.dev
+
 [options]: https://playwright.dev/docs/test-advanced#configuration-object
