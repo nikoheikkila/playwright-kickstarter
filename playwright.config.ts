@@ -1,5 +1,5 @@
+import { devices, PlaywrightTestConfig, ReporterDescription } from '@playwright/test';
 import os from 'node:os';
-import { PlaywrightTestConfig, devices, ReporterDescription } from '@playwright/test'
 
 enum Reporter {
     HTML = 'html',
@@ -34,8 +34,8 @@ const isPipeline = !!process.env.CI;
 // Match pixel comparison at least 95 % to avoid flaky tests but ensure enough confidence
 const threshold = 0.95;
 
-// GitHub Actions only has 2 vCPUs available, hence we want to use them all.
-const workers = isPipeline ? 2 : undefined;
+// Use all the logical cores available for maximum performance
+const workers = '100%';
 
 // Ensure we are not wasting build minutes in CI by operating in a fail-fast mode
 const maxFailures = isPipeline ? 1 : undefined;
@@ -73,6 +73,7 @@ const config: PlaywrightTestConfig = {
             timeout: 120 * 1000,
         },
     use: {
+        headless: true,
         baseURL: process.env.APP_URL ?? DEV_URL,
         userAgent: 'Microsoft Playwright',
         locale: 'en-GB',
@@ -102,11 +103,11 @@ const config: PlaywrightTestConfig = {
             ...devices[ 'Desktop Safari' ],
         },
         {
-            name: 'iPhone',
+            name: 'iPhone 13',
             ...devices[ 'iPhone 13' ],
         },
         {
-            name: 'Android',
+            name: 'Pixel 5',
             ...devices[ 'Pixel 5' ],
         }
     ]
